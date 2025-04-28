@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="ro">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cleanmate - Contact</title>
+    <title>Cleaning Mini-Game</title>
+    <link rel="stylesheet" href="css/game.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/contact.css">
+    <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
@@ -32,71 +33,11 @@
             </div>
         </div>
     </header>
-
-    <section class="page-hero">
-        <div class="container">
-            <h1>Contact</h1>
-            <p>Suntem aici pentru a răspunde la orice întrebare ai avea</p>
-        </div>
-    </section>
-
-    <section class="contact-content">
-        <div class="container">
-            <div class="contact-info">
-                <h2>Date de contact</h2>
-                <div class="info-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <div>
-                        <h3>Adresă</h3>
-                        <p>Strada Matei Corvin 181, Oradea 410140, Romania</p>
-                    </div>
-                </div>
-                <div class="info-item">
-                    <i class="fas fa-phone"></i>
-                    <div>
-                        <h3>Telefon</h3>
-                        <p>0742 580 480</p>
-                    </div>
-                </div>
-                <div class="info-item">
-                    <i class="fas fa-envelope"></i>
-                    <div>
-                        <h3>Email</h3>
-                        <p>contact.cleanmate@gmail.com</p>
-                    </div>
-                </div>
-                <div class="info-item">
-                    <i class="fas fa-clock"></i>
-                    <div>
-                        <h3>Program</h3>
-                        <p>Luni - Vineri: 8:00 - 20:00</p>
-                        <p>Sâmbătă: 9:00 - 15:00</p>
-                        <p>Duminică: Închis</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="map">
-        <div class="container">
-            <h2>Unde ne găsești</h2>
-            <div class="address-info">
-                <p><i class="fas fa-map-marker-alt"></i> Strada Matei Corvin 181, Oradea 410140, Romania</p>
-                <div class="map-container">
-                    <iframe
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2661.597635836937!2d21.918443315932142!3d47.0761623595516!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4746478a19323641%3A0xbb1fc9a040c7e97d!2sStrada%20Matei%20Corvin%20181%2C%20Oradea%20410140%2C%20Romania!5e0!3m2!1sen!2sro!4v1620000000000!5m2!1sen!2sro&markers=color:red%7C47.076162%2C21.920632"
-                      width="100%"
-                      height="450"
-                      style="border:0;"
-                      allowfullscreen=""
-                      loading="lazy"
-                      title="Cleanmate Location - Strada Matei Corvin 181">
-                    </iframe>
-                  </div>
-        </div>
-    </section>
-
+    <h1>Cleaning Mini-Game</h1>
+    <p>Click on the dirt spots to clean them!</p>
+    <div id="progress">Progress: 0%</div>
+    <div id="game-container"></div>
+    <button id="restart-btn">Restart Game</button>
     <footer>
         <div class="container">
             <div class="footer-grid">
@@ -138,9 +79,11 @@
             <div class="footer-bottom">
                 <p>&copy; 2025 Cleanmate. Toate drepturile rezervate.</p>
             </div>
-        </div>    </footer>
+        </div>
+    </footer>
 
     <script src="js/script.js"></script>
-    <script src="js/contact.js"></script>
+    <script src="js/home.js"></script>
+    <script src="js/game.js"></script>
 </body>
 </html>
