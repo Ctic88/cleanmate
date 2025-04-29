@@ -1,54 +1,109 @@
-body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    background-color: #f0f0f0;
-    margin: 0;
+/* Game Container */
+.game-container {
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 20px;
 }
 
-h1 {
-    color: #333;
+.game-header {
+    text-align: center;
+    margin: 20px 0;
 }
 
-#progress {
-    font-size: 1.2em;
-    margin: 10px 0;
+.game-header h1 {
+    color: #4682b4;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.game-header p {
+    font-size: 1.2rem;
+    color: #666;
+}
+
+/* Game Area */
+#game-area {
+    position: relative;
+    width: 800px;
+    height: 500px;
+    margin: 20px auto;
+    background-color: #f0f8ff;
+    border: 3px solid #4682b4;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Game Stats */
+#game-stats {
+    display: flex;
+    justify-content: space-around;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 15px;
+    background-color: #4682b4;
+    color: white;
+    border-radius: 5px;
+    font-family: Arial, sans-serif;
+}
+
+#game-stats div {
+    font-size: 1.1rem;
     font-weight: bold;
 }
 
-#game-container {
-    position: relative;
-    width: 500px;
-    height: 400px;
-    margin: 20px auto;
-    background-color: #fff;
-    border: 3px solid #ccc;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-
+/* Dirt Elements */
 .dirt {
     position: absolute;
     width: 40px;
     height: 40px;
-    background-color: #8B4513;
+    background-color: #8b4513;
     border-radius: 50%;
     cursor: pointer;
     transition: all 0.3s ease;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
 }
 
+.moving-dirt {
+    background-color: #a0522d;
+}
+
+.special-dirt {
+    background-color: #ff4500;
+    box-shadow: 0 0 10px #ff4500;
+    animation: pulse 1s infinite alternate;
+}
+
+@keyframes pulse {
+    from { transform: scale(1); }
+    to { transform: scale(1.1); }
+}
+
+/* Particles */
+.particle {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background-color: #ffeb3b;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+/* Button */
 #restart-btn {
-    padding: 10px 20px;
-    background-color: #4CAF50;
+    display: block;
+    margin: 20px auto;
+    padding: 12px 25px;
+    background-color: #4682b4;
     color: white;
     border: none;
     border-radius: 5px;
+    font-size: 1rem;
     cursor: pointer;
-    font-size: 1em;
-    margin-top: 20px;
+    transition: all 0.3s;
 }
 
 #restart-btn:hover {
-    background-color: #45a049;
+    background-color: #36648b;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
