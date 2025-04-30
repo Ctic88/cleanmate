@@ -1,4 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Mobile detection
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    const baseDirtSize = isMobile ? 30 : 40;
+
+    // DOM Elements
     const gameArea = document.getElementById('game-area');
     const progressDisplay = document.getElementById('progress');
     const scoreDisplay = document.getElementById('score');
@@ -6,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const levelDisplay = document.getElementById('level');
     const restartBtn = document.getElementById('restart-btn');
     
-
+    // Game State
     let level = 1;
     let score = 0;
     let timeLeft = 60;
@@ -16,13 +21,14 @@ document.addEventListener('DOMContentLoaded', function() {
     let specialDirtActive = false;
     let gameActive = false;
     
-
+    // Game Configuration
     const dirtTypes = [
         { className: 'dirt', points: 10, speed: 0, spawnChance: 0.7 },
-        { className: 'dirt moving-dirt', points: 20, speed: 2, spawnChance: 0.2 },
+        { className: 'dirt moving-dirt', points: 20, speed: isMobile ? 1 : 2, spawnChance: 0.2 },
         { className: 'dirt special-dirt', points: 50, speed: 0, spawnChance: 0.1 }
     ];
     
+    // Initialize Game
     function initGame() {
         level = 1;
         score = 0;
@@ -35,10 +41,10 @@ document.addEventListener('DOMContentLoaded', function() {
         startTimer();
     }
     
+    // Game Functions
     function createDirtSpots() {
         gameArea.innerHTML = '';
         cleanedCount = 0;
-        
         dirtCount = 10 + (level * 2);
         
         for (let i = 0; i < dirtCount; i++) {
@@ -64,16 +70,21 @@ document.addEventListener('DOMContentLoaded', function() {
         const dirt = document.createElement('div');
         dirt.className = selectedDirt.className;
         
-        const maxX = gameArea.offsetWidth - 40;
-        const maxY = gameArea.offsetHeight - 40;
+        const maxX = gameArea.offsetWidth - baseDirtSize;
+        const maxY = gameArea.offsetHeight - baseDirtSize;
         
         let posX = Math.random() * maxX;
         let posY = Math.random() * maxY;
         
         dirt.style.left = posX + 'px';
         dirt.style.top = posY + 'px';
+        dirt.style.width = baseDirtSize + 'px';
+        dirt.style.height = baseDirtSize + 'px';
         
-        dirt.addEventListener('click', function() {
+        // Event handling for mobile vs desktop
+        const eventType = isMobile ? 'touchstart' : 'click';
+        dirt.addEventListener(eventType, function(e) {
+            if (isMobile) e.preventDefault();
             if (gameActive) cleanDirt(dirt, selectedDirt.points);
         });
         
@@ -136,9 +147,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if (dirt.classList.contains('cleaned')) return;
         
         dirt.classList.add('cleaned');
-        dirt.style.transform = 'scale(1.5)';
-        dirt.style.opacity = '0';
-        
         createParticles(dirt);
         
         setTimeout(() => {
@@ -229,16 +237,23 @@ document.addEventListener('DOMContentLoaded', function() {
         createDirtSpots();
     }
     
-
     function endGame() {
         gameActive = false;
         clearInterval(gameInterval);
         alert(`Game Over! Final Score: ${score} (Level ${level})`);
     }
     
-
+    // Event Listeners
     restartBtn.addEventListener('click', initGame);
     
+    // Handle window resize
+    window.addEventListener('resize', function() {
+        if (isMobile) {
+            gameArea.style.width = window.innerWidth + 'px';
+            gameArea.style.height = (window.innerHeight - document.getElementById('game-info').offsetHeight) + 'px';
+        }
+    });
 
+    // Start the game
     initGame();
 });
