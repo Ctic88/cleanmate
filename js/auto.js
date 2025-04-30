@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Before-After Slider Functionality
+
     const beforeAfterItems = document.querySelectorAll('.before-after-item');
     
     beforeAfterItems.forEach(item => {
@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         let isDragging = false;
         
-        // Make the entire container draggable except when clicking the link
+
         container.addEventListener('mousedown', function(e) {
             if (e.target.closest('a')) return;
             isDragging = true;
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Lightbox Functionality
+
     const imageLinks = document.querySelectorAll('.image-link');
     const lightbox = document.createElement('div');
     lightbox.className = 'lightbox';
@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     imageLinks.forEach(link => {
         link.addEventListener('click', function(e) {
-            // Only open lightbox if not dragging
+
             if (!isDragging) {
                 e.preventDefault();
                 const fullSizeSrc = this.getAttribute('href');
@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.style.overflow = '';
     }
     
-    // Close with ESC key
+
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && lightbox.classList.contains('active')) {
             closeLightboxHandler();

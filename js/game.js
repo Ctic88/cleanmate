@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const levelDisplay = document.getElementById('level');
     const restartBtn = document.getElementById('restart-btn');
     
-    // Game variables
+
     let level = 1;
     let score = 0;
     let timeLeft = 60;
@@ -16,14 +16,13 @@ document.addEventListener('DOMContentLoaded', function() {
     let specialDirtActive = false;
     let gameActive = false;
     
-    // Dirt types with different properties
+
     const dirtTypes = [
         { className: 'dirt', points: 10, speed: 0, spawnChance: 0.7 },
         { className: 'dirt moving-dirt', points: 20, speed: 2, spawnChance: 0.2 },
         { className: 'dirt special-dirt', points: 50, speed: 0, spawnChance: 0.1 }
     ];
     
-    // Initialize game
     function initGame() {
         level = 1;
         score = 0;
@@ -36,12 +35,10 @@ document.addEventListener('DOMContentLoaded', function() {
         startTimer();
     }
     
-    // Create dirt spots
     function createDirtSpots() {
         gameArea.innerHTML = '';
         cleanedCount = 0;
         
-        // Calculate dirt count based on level
         dirtCount = 10 + (level * 2);
         
         for (let i = 0; i < dirtCount; i++) {
@@ -51,9 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
         updateDisplays();
     }
     
-    // Create a single dirt spot
     function createDirt() {
-        // Choose dirt type based on spawn chances
         const rand = Math.random();
         let cumulativeChance = 0;
         let selectedDirt;
@@ -69,7 +64,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const dirt = document.createElement('div');
         dirt.className = selectedDirt.className;
         
-        // Random position within container
         const maxX = gameArea.offsetWidth - 40;
         const maxY = gameArea.offsetHeight - 40;
         
@@ -79,26 +73,22 @@ document.addEventListener('DOMContentLoaded', function() {
         dirt.style.left = posX + 'px';
         dirt.style.top = posY + 'px';
         
-        // Add click event to clean the dirt
         dirt.addEventListener('click', function() {
             if (gameActive) cleanDirt(dirt, selectedDirt.points);
         });
         
         gameArea.appendChild(dirt);
         
-        // If it's a moving dirt, make it move
         if (selectedDirt.speed > 0) {
             moveDirt(dirt, selectedDirt.speed, posX, posY, maxX, maxY);
         }
         
-        // If it's special dirt, make it blink
         if (dirt.classList.contains('special-dirt')) {
             specialDirtActive = true;
             blinkDirt(dirt);
         }
     }
     
-    // Make dirt move around
     function moveDirt(dirt, speed, startX, startY, maxX, maxY) {
         let x = startX;
         let y = startY;
@@ -114,7 +104,6 @@ document.addEventListener('DOMContentLoaded', function() {
             x += speed * xDirection;
             y += speed * yDirection;
             
-            // Bounce off walls
             if (x <= 0 || x >= maxX) xDirection *= -1;
             if (y <= 0 || y >= maxY) yDirection *= -1;
             
@@ -123,7 +112,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 30);
     }
     
-    // Make special dirt blink
     function blinkDirt(dirt) {
         let visible = true;
         const blinkInterval = setInterval(() => {
@@ -136,7 +124,6 @@ document.addEventListener('DOMContentLoaded', function() {
             dirt.style.opacity = visible ? '1' : '0';
         }, 500);
         
-        // Special dirt disappears after 5 seconds
         setTimeout(() => {
             if (dirt.parentNode && !dirt.classList.contains('cleaned')) {
                 dirt.remove();
@@ -145,7 +132,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 5000);
     }
     
-    // Clean a dirt spot
     function cleanDirt(dirt, points) {
         if (dirt.classList.contains('cleaned')) return;
         
@@ -153,17 +139,14 @@ document.addEventListener('DOMContentLoaded', function() {
         dirt.style.transform = 'scale(1.5)';
         dirt.style.opacity = '0';
         
-        // Add particles for effect
         createParticles(dirt);
         
-        // Remove after animation
         setTimeout(() => {
             if (dirt.parentNode) {
                 dirt.remove();
                 cleanedCount++;
                 score += points;
                 
-                // Bonus for cleaning all dirt quickly
                 if (cleanedCount === dirtCount) {
                     const timeBonus = Math.floor(timeLeft * level);
                     score += timeBonus;
@@ -176,7 +159,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 300);
     }
     
-    // Create particles for visual effect
     function createParticles(element) {
         const rect = element.getBoundingClientRect();
         const x = rect.left + rect.width / 2;
@@ -188,7 +170,6 @@ document.addEventListener('DOMContentLoaded', function() {
             particle.style.left = x + 'px';
             particle.style.top = y + 'px';
             
-            // Random direction and speed
             const angle = Math.random() * Math.PI * 2;
             const speed = 1 + Math.random() * 3;
             const xVel = Math.cos(angle) * speed;
@@ -220,7 +201,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Update all displays
     function updateDisplays() {
         const percentage = Math.round((cleanedCount / dirtCount) * 100);
         progressDisplay.textContent = `Progress: ${percentage}%`;
@@ -229,7 +209,6 @@ document.addEventListener('DOMContentLoaded', function() {
         levelDisplay.textContent = `Level: ${level}`;
     }
     
-    // Start the game timer
     function startTimer() {
         clearInterval(gameInterval);
         gameInterval = setInterval(() => {
@@ -242,25 +221,24 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 1000);
     }
     
-    // Move to next level
     function nextLevel() {
         level++;
-        timeLeft = 60 - (level * 2); // Less time each level
-        if (timeLeft < 10) timeLeft = 10; // Minimum 10 seconds
+        timeLeft = 60 - (level * 2); 
+        if (timeLeft < 10) timeLeft = 10; 
         cleanedCount = 0;
         createDirtSpots();
     }
     
-    // End the game
+
     function endGame() {
         gameActive = false;
         clearInterval(gameInterval);
         alert(`Game Over! Final Score: ${score} (Level ${level})`);
     }
     
-    // Restart game
+
     restartBtn.addEventListener('click', initGame);
     
-    // Initialize game
+
     initGame();
 });

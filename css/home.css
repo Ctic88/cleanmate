@@ -1,4 +1,4 @@
-/* Hero Section */
+/* Hero  */
 .hero {
     background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/hero-bg.jpg') no-repeat center center/cover;
     height: 80vh;
@@ -19,7 +19,7 @@
     margin-bottom: 30px;
 }
 
-/* Services Section */
+/* Services  */
 .services {
     padding: 80px 0;
     background-color: var(--white);
@@ -68,7 +68,7 @@
     margin-bottom: 20px;
 }
 
-/* About Section */
+/* About  */
 .about {
     padding: 80px 0;
     background-color: var(--light-color);
@@ -107,7 +107,7 @@
     color: var(--primary-color);
 }
 
-/* Testimonials Section */
+/* Testimonials  */
 .testimonials {
     padding: 80px 0;
     background-color: var(--white);
@@ -187,7 +187,7 @@
     background-color: var(--secondary-color);
 }
 
-/* Responsive Styles */
+/* Responsive  */
 @media (max-width: 768px) {
     .hero {
         height: 60vh;

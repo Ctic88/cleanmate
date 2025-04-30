@@ -1,4 +1,4 @@
-/* Page Hero */
+/*  Hero */
 .page-hero {
     background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/hero-bg.jpg') no-repeat center center/cover;
     height: 50vh;
@@ -18,7 +18,7 @@
     font-size: 1.2rem;
 }
 
-/* Contact Content */
+/* Contact  */
 .contact-content {
     padding: 80px 0;
     background-color: var(--white);
@@ -56,7 +56,7 @@
 }
 
 /* Contact Form */
-.contact-form {
+/* .contact-form {
     background-color: var(--light-color);
     padding: 30px;
     border-radius: 10px;
@@ -104,9 +104,9 @@
 .form-group textarea {
     resize: vertical;
     min-height: 150px;
-}
+} */
 
-/* Map Section Styles */
+/* Map   */
 .map {
     padding: 50px 0;
     background-color: var(--light-color);
@@ -136,7 +136,7 @@
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Responsive adjustments */
+/* Responsive  */
 @media (max-width: 768px) {
     .map h2 {
         font-size: 2rem;
@@ -146,7 +146,7 @@
         font-size: 1rem;
     }
 }
-/* Responsive Styles */
+/* Responsive  */
 @media (max-width: 768px) {
     .page-hero h1 {
         font-size: 2rem;
